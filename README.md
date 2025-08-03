@@ -1,13 +1,30 @@
-Overview: 
-This project demonstrates how to configure the SSI0 peripheral on the TM4C123GH6PM microcontroller to function as an SPI master. It sets up GPIO Port A pins (PA2–PA5) for SPI signals and transmits data using bare-metal embedded C programming with direct register access.
+# Bare-Metal SPI Master Initialization – TM4C123
+## 📌 Description
+This project demonstrates bare-metal programming to initialize and use the SSI0 (SPI) module of the TM4C123GH6PM microcontroller as a master device. The code sets up SPI on Port A (PA2–PA5) and transmits data over the SPI bus.
 
-Features:
-SPI master mode setup via SSI0
+## 🧰 Features
+- Direct register-level configuration (bare-metal)
+- Uses system clock for SPI
 
-GPIO Port A (PA2–PA5) configured for SPI functions
+### Configures:
+- PA2 as SSIClk
+- PA3 as SSIFss
+- PA4 as SSITx
+- PA5 as SSIRx
 
-8-bit data transmission using Freescale SPI frame format
+### Sends an 8-bit data value (example: 'P')
 
-System clock and SSI0 clock prescaler configured for SPI timing
+# 🛠️ How to Build
+## 🔧 Requirements
+- TM4C123GH6PM microcontroller (or Tiva C LaunchPad)
+- Code Composer Studio
+- Header files: clock.h, wait.h, and tm4c123gh6pm.h
 
-Bare-metal register-level programming, no external libraries
+# 🏗️ Steps
+- Initialize system clock
+- Set system clock to 20MHz using initSystemClckTo20Mz() (defined in clock.h)
+- Call initSPI()
+- Enables SSI0 and configures GPIO port A pins for SPI peripheral mode.
+- Sets clock polarity, phase, frame format, and bit rate.
+- Send data
+- Use SSI_send_data(char data) to transmit a byte via SPI.
